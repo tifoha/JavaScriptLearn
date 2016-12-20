@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Испытание. Дуэль</title>
+	<style>
+		body {
+			width: 280px;
+			margin: 0;
+			padding: 0;
+		}
+
+		/*.shooter-1 {*/
+			/*padding: 55px 0 55px 0;*/
+			/*border-bottom: 1px dashed #cccccc;*/
+			/*background: #fcf8e3;*/
+		/*}*/
+
+		/*.shooter-2 {*/
+			/*padding: 55px 0 55px 0;*/
+			/*background: #d9edf7;*/
+		/*}*/
+
+		/*ul {*/
+			/*width: 200px;*/
+			/*height: 25px;*/
+			/*margin: 0 auto;*/
+			/*padding: 10px 15px 10px 15px;*/
+			/*border-radius: 2px;*/
+			/*background: white;*/
+			/*box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);*/
+			/*overflow: hidden;*/
+			/*list-style: none;*/
+		/*}*/
+
+
+		 /*!*{*!*/
+			/*!*margin-right: 0;*!*/
+		/*!*}*!*/
+
+		/*li.miss div.hitbox {*/
+			/*width: 10px;*/
+			/*height: 10px;*/
+			/*margin: 6px auto;*/
+			/*border-radius: 50%;*/
+			/*background: #999999;*/
+		/*}*/
+
+		/*li div.lever{*/
+			/*position: absolute;*/
+			/*top: -2px;*/
+			/*left: -2px;*/
+			/*width: 26px;*/
+			/*height: 26px;*/
+			/*border-radius: 50%;*/
+			/*background: #f5f5f5;*/
+			/*box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);*/
+		/*}*/
+		.main {
+			position: relative;
+			float: left;
+			width: 220px;
+			height: 220px;
+
+
+			/*margin-right: 20px;*/
+			border: 1px solid black;
+			border-radius: 50%;
+			background: white;
+			font-size: 0;
+		}
+
+		.main div{
+			/*position: static;*/
+			position: absolute;
+			/*top: 12px;*/
+			/*left: 11px;*/
+			width: 40px;
+			height: 40px;
+			/*background: red;*/
+			border: 1px solid black;
+			/*z-index: 1;*/
+			/*box-shadow:*/
+					/*-1px 15px 2px rgba(0, 0,0 , 0.3),*/
+					/*1px 15px 2px rgba(0, 0, 0, 0.3);*/
+		}
+
+		.central{
+			/*position: absolute;*/
+			top: 90px;
+			left: 90px;
+			background: brown;
+		}
+		.up{
+			/*position: absolute;*/
+			top: 49px;
+			left: 90px;
+			background: red;
+		}
+		.down{
+			/*position: absolute;*/
+			top: 131px;
+			left: 90px;
+			background: red;
+		}
+		.right{
+			/*position: absolute;*/
+			top: 90px;
+			left: 131px;
+			background: red;
+		}
+		.left{
+			/*position: absolute;*/
+			top: 90px;
+			left: 49px;
+			background: red;
+		}
+		/*li:first-child .lever {*/
+			/*display: none;*/
+		/*}*/
+
+		/*selector {*/
+			/*display: none;*/
+		/*}*/
+
+		/*selector {*/
+			/*display: none;*/
+		/*}*/
+
+		/*selector {*/
+			/*display: none;*/
+		/*}*/
+	</style>
+</head>
+<body>
+<div class="main">
+	<div class="central"></div>
+	<div class="left"></div>
+	<div class="right"></div>
+	<div class="up"></div>
+	<div class="down"></div>
+</div>
+<!--<div class="shooter-1">-->
+	<!--<ul class="target">-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li class="miss">-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li class="miss">-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li class="miss">-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+	<!--</ul>-->
+<!--</div>-->
+<!--<div class="shooter-2">-->
+	<!--<ul class="target">-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<div class="hitbox"></div>-->
+			<!--<div class="lever"><span></span></div>-->
+		<!--</li>-->
+	<!--</ul>-->
+<!--</div>-->
+</body>
+</html>
