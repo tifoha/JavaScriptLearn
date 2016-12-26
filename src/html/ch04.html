@@ -7,50 +7,58 @@
 <body>
 <h3>Структуры данных: объекты и массивы</h3>
 <script>
-    //Получение свойства объекта
-    let string = "length";
-    console.log(string["length"]);
-
-    console.log("=====================");
-    console.log(string[string]);
-    console.log(string["toUpperCase"]());
-
-    console.log("=====================");
-    let array = [];
-    array.push("Трест");
-    array.push("который", "лопнул");
-    console.log(array.join(", "));
-    array.unshift("лопнул");
-    console.log(array.pop());
-    console.log(array.join(", "));
-
-    console.log("=====================");
-    let day = {
-        squirrel: false,
-        events: ["работа", "тронул дерево", "пицца", "пробежка", "телевизор"],
-    };
-    console.log(day.events.join(", "));
-    console.log(day.aditionalProperty);
-    day.aditionalProperty = true;
-    console.log(day.aditionalProperty);
-    day.aditionalProperty = undefined;
-    console.log("aditionalProperty" in day);
-    delete day.aditionalProperty;
-    console.log("aditionalProperty" in day);
-
-    console.log("=====================");
-    let a1 = [1], a2 = [1], a3 = a1;
-    console.log(a1 == a3);//true
-    console.log(a1 == a2);//false
-
-    console.log("=====================");
-    let map = {};
-    map["key1"] = "value1";
-    map["key2"] = "value2";
-    map["key3"] = "value3";
-    for (key in map) {
-        console.log("key=", key, "value=", map[key]);
-    }
+    //    //Получение свойства объекта
+    //    let string = "length";
+    //    console.log(string["length"]);
+    //
+    //    console.log("=====================");
+    //    console.log(string[string]);
+    //    console.log(string["toUpperCase"]());
+    //
+    //    console.log("=====================");
+    //    let array = [];
+    //    array.push("Трест");
+    //    array.push("который", "лопнул");
+    //    console.log(array.join(", "));
+    //    array.unshift("лопнул");
+    //    console.log(array.pop());
+    //    console.log(array.join(", "));
+    //
+    //    console.log("=====================");
+    //    let day = {
+    //        squirrel: false,
+    //        events: ["работа", "тронул дерево", "пицца", "пробежка", "телевизор"],
+    //    };
+    //    console.log(day.events.join(", "));
+    //    console.log(day.aditionalProperty);
+    //    day.aditionalProperty = true;
+    //    console.log(day.aditionalProperty);
+    //    day.aditionalProperty = undefined;
+    //    console.log("aditionalProperty" in day);
+    //    delete day.aditionalProperty;
+    //    console.log("aditionalProperty" in day);
+    //
+    //    console.log("=====================");
+    //    let a1 = [1], a2 = [1], a3 = a1;
+    //    console.log(a1 == a3);//true
+    //    console.log(a1 == a2);//false
+    //
+    //    console.log("=====================");
+    //    let map = {};
+    //    map["key1"] = "value1";
+    //    map["key2"] = "value2";
+    //    map["key3"] = "value3";
+    //    for (key in map) {
+    //        console.log("key=", key, "value=", map[key]);
+    //    }
+    let array1 = [1, 3, 5, 6, 2, 3, 6, 7, 4, 3];
+    console.log(array1.lastIndexOf(3));
+    console.log(array1.slice(3).join(","));
+//    Строки
+    let s = "кокосы";
+    console.log(s.slice(3));
+    console.log(s.indexOf('о'));
+    console.log(s.lastIndexOf('о'));
 </script>
 </body>
 </html>
