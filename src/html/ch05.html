@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://eloquentjavascript.net/code/ancestry.js"></script>
+	<title>Функции высшего порядка</title>
+</head>
+<body>
+<h3>Функции высшего порядка</h3>
+<script>
+    ["Тили", "Мили", "Трямдия"].forEach(function (item) {
+        console.log(item)
+    });
+    function callMe(f) {
+        return function () {
+            f.apply(null, arguments);
+        }
+    }
+    {
+        let json = JSON.stringify({name: "Vitaly", boun: 1986});
+        console.log(json);
+        console.log(JSON.parse(json).boun);
+    }
+    let ancestry = JSON.parse(ANCESTRY_FILE);
+    console.log(ancestry.length);
+    console.log(ancestry.filter(function (item) {
+        return item.born < 1924
+			&& item.born > 1900;
+    }));
+</script>
+</body>
+</html>

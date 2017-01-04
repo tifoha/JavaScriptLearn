@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Тайная жизнь объектов</title>
+</head>
+<body>
+<h3>Тайная жизнь объектов</h3>
+<script>
+    {
+        let rabbit = {};
+        rabbit.speak = function (phrase) {
+            console.log("Кролик говорит \"" + phrase + "\"");
+        };
+        rabbit.speak("Я живой!");
+    }
+    {
+        let speak = function (phrase) {
+            console.log("А " + this.type + " кролик говорит '" + phrase + "'");
+        };
+
+        let whiteRabbit = {type: "Белый", speak: speak};
+        let fatRabbit = {type: "Толстый", speak: speak};
+        whiteRabbit.speak("Ушки мои и усики, я же наверняка опаздываю!");
+        fatRabbit.speak("Мне бы сейчас морковочки.");
+    }
+	{
+	    function foo(a, b) {
+            console.log(this);
+            console.log(a + b);
+        }
+
+//        let bind = function (f, context) {
+//            f.apply(context, arguments);
+//        };
+
+        let fooContext = foo.bind("Context");
+        fooContext(1, 1);
+	}
+	{
+        let empty = {};
+        console.log(empty.toString);
+        console.log(empty.toString());
+	}
+	{
+        console.log(Object.getPrototypeOf({}));
+        console.log(Object.getPrototypeOf(Object.prototype));
+	}
+	{
+        let rabbitPrototype = {
+			speak:function (phrase) {
+                console.log("А " + this.type + " кролик говорит '" +  phrase + "'");
+            }
+		};
+        let killerRabbit = Object.create(rabbitPrototype);
+        killerRabbit.type = "убийственный";
+        killerRabbit.speak("ХРЯСЬ!!!");
+	}
+	{
+	    function Rabbit(type) {
+            this.type = type;
+        }
+
+        let blackRabbit = new Rabbit("черный");
+        Rabbit.prototype.speak = function (phrase) {
+            console.log("А " + this.type + " кролик говорит '" + phrase + "'");
+        };
+        blackRabbit.speak("всем пиздец");
+        console.log("toString" in blackRabbit);
+        console.log(blackRabbit.hasOwnProperty("toString"));//false
+
+        let map = Object.create(null);
+        console.log("toString" in map);//false
+	}
+//	Table printer
+	{
+	    function rowHeights(rows) {
+			return rows.map(function (row) {
+				return row.reduce(function (max, cell) {
+					Math.max(max, cell.maxHeight())
+                }, 0);
+            });
+        }
+    function maxWidths(rows) {
+		rows.map(function (_, i) {
+
+        });
+    }
+	}
+</script>
+</body>
+</html>
