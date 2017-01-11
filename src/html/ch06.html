@@ -61,6 +61,7 @@
             this.type = type;
         }
 
+
         let blackRabbit = new Rabbit("черный");
         Rabbit.prototype.speak = function (phrase) {
             console.log("А " + this.type + " кролик говорит '" + phrase + "'");
@@ -87,6 +88,50 @@
         });
     }
 	}
+    {
+        var pile = {
+            elements: ["скорлупа", "кожура", "червяк"],
+			get height() {
+                return this.elements.length;
+            },
+			set height(value) {
+                console.log("Игнорируем попытку задать высоту ", value);
+            }
+        };
+        console.log(pile.height); // → 3
+		pile.height = 100; // → Игнорируем попытку задать высоту 100
+        console.log(pile.height); // → 3
+        let p = {
+            value: undefined,
+			get value() {
+                console.log("Getter");
+            },
+			set value(v) {
+                console.log("Setter");
+            }
+
+        };
+        let x = p.value;
+        p.value = "dfa";
+//	    function Cell(value) {
+//            this.value = value;
+//        }
+//
+//        Cell.prototype = {
+////	        value: undefined,
+//	        get value() {
+////            console.log("getter:", this.value);
+//            return this.value;
+//        }, set value(value) {
+////            console.log("setter:", this.value, "<-", value);
+//            this.value = value;
+//        }};
+//
+//        let cell = new Cell("TEXT");
+//        console.log(cell.value);
+//        cell.value = "NEW TEXT";
+//        console.log(cell.value);
+    }
 </script>
 </body>
 </html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Электронная жизнь</title>
+</head>
+<body>
+<h3>Электронная жизнь</h3>
+<script>
+    {
+//        "use strict";
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+        function Point(x, y) {
+            this._x = x;
+            this._y = y;
+        }
+
+        Point.prototype = {
+            get x() {
+                return this._x;
+            },
+            get y() {
+                return this._y;
+            }
+        };
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+        function Grid(width, height) {
+            this._data = new Array(width * height);
+        }
+
+        Grid.prototype = {
+            set: function (point, value) {
+                this._data[point.x * point.y] = value;
+            },
+
+            get: function (point) {
+                return this._data[point.x * point.y];
+            },
+
+            isEmpty: function (point) {
+                return this.get(point) != null;
+            }
+        };
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+    }
+    {
+//        let grid = new Grid(5, 5);
+//        let point = new Point(2, 3);
+//        console.log(grid.isEmpty(point));
+//        grid.set(point, "A");
+//        console.log(grid.isEmpty(point));
+//        var g = new Grid(4, 5);
+//        var get = g.get;
+//        console.log(get.call(g));
+//
+//        function numberToString(n, base) {
+//            var result = "", sign = "";
+//            if (n < 0) {
+//                sign = "-";
+//                n = -n;
+//            }
+//            do {
+//                result = String(n % base) + result;
+//                n = Math.floor(n / base);
+//            } while (n > 0);
+//            return sign + result;
+//        }
+//
+//        console.log(numberToString(13, 2));
+//        function promptDirection(question) {
+//            var result = prompt(question, "");
+//            if (result.toLowerCase() == "left") return "L";
+//            if (result.toLowerCase() == "right") return "R";
+//            throw new Error("Недопустимое направление: " + result);
+//        }
+//
+//        function look() {
+//            if (promptDirection("Куда?") == "L")return "дом";
+//            elsereturn
+//            "двоих разъярённых медведей";
+//        }
+//
+//        try {
+//            console.log("Вы видите ", look());
+//        } catch (error) {
+//            console.log("Что-то не так: " + error);
+//        }
+        function RuntimeException(message) {
+            Error.apply(this, arguments);
+        }
+
+        RuntimeException.prototype = Object.create(Error.prototype);
+
+        try {
+            throw new RuntimeException();
+        } catch (e) {
+//            if (e instanceof RuntimeException) {
+            if (e instanceof Error) {
+                console.log(e);
+            } else
+                throw e
+        }
+//        RuntimeException.assertThat
+    }
+    //Exceptions tasks
+    function MultiplicatorUnitFailure() {
+
+    }
+    {
+        function primitiveMultiply(x, y) {
+            if (Math.random() < 0.5) {
+                throw new MultiplicatorUnitFailure();
+            }
+            return x * y;
+        }
+
+        function bruteExec(x, y) {
+            while (true) {
+                try {
+                    let result = primitiveMultiply(x, y);
+                    return result;
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        }
+        console.log(bruteExec(2, 3));
+    }
+</script>
+</body>
+</html>

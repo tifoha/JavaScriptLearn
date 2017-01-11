@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Modules</title>
+</head>
+<body>
+<h3>Modules</h3>
+<script>
+    //    var dayNames = function () {
+    //        let names = ["Monday", "Thursday", "Wednesday"];
+    //        return function (number) {
+    //            return names[number];
+    //        }
+    //    };
+    //    console.log(dayNames()(1));
+    var dayName = function () {
+        var names = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
+        return function (number) {
+            return names[number];
+        };
+    }();
+    console.log(dayName(3));
+</script>
+</body>
+</html>

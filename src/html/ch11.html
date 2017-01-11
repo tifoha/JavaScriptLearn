@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>RegExp</title>
+</head>
+<body>
+<h3>RegExp</h3>
+<script>
+    {
+        console.log(new RegExp("abc").test("sdlfkjasdfjabc;alsdjfalsdj"));
+        let match = /\d+/.exec("one two 100 2389");
+        console.log(match); // → ["100"]
+        console.log(match.index); // → 8
+        let date = new Date();
+        console.log(date);
+        console.log(date.getTime());
+        console.log(date.getMonth());
+        console.log(Date.now());
+        let reg1 = /\d+ (pig)s?/;
+        console.log(reg1.test("10 pig"));
+        let animalCount = /\b\d+ (pig|cow|chicken)s?\b/;
+        console.log(animalCount.test("15 pigs"));
+
+        console.log("папа".replace(/п/g, "м"));
+        console.log("Hopper, Grace\nMcCarthy, John\nRitchie, Dennis".replace(/([\w ]+), ([\w ]+)/g, "$2 $1"));
+        console.log("Hopper, Grace\nMcCarthy, John\nRitchie, Dennis".replace(/([\w ]+), ([\w ]+)/g, function (str) {
+            return str.toUpperCase();
+        }));
+
+        function minus1(match, amount, unit, comma) {
+            return match;
+        }
+
+        let stock = "1 lemon, 2 cabbages, and 101 eggs";
+        console.log(stock.replace(/(\d+) (\w+)?/g, minus1));
+        let name = "dea+hl[]rd";
+        let text = "Этот dea+hl[]rd всех достал.";
+        let escaped = name.replace(/[^\w\s]/g, "\\$&amp;");
+        console.log(escaped);
+    }
+    {
+	    let input = "Строчка с 3 числами в ней... 42 и 88.";
+	    let matcher = /\b\d+\b/g;
+	    let match;
+		while (match = matcher.exec(input)) {
+            console.log("find '" + match[0] + "' in + match.index");
+        }
+    }
+</script>
+</body>
+</html>
