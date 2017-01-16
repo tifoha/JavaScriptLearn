@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<title>Моя домашняя страничка</title>
+</head>
+<body>
+<h1> Моя домашняя страничка </h1>
+<p>Привет, я Марийн и это моя домашняя страничка.</p>
+<p>А ещё я книжку написал! Читайте её <a href="http://eloquentjavascript.net">здесь</a>.</p>
+<!--Bla bla bla-->
+</body>
+<!--<form>-->
+	<input type="number" id="a"> + <input type="number" id="b"> = <span id="summ">0</span> <button onclick="sum()">OK</button>
+<!--</form>-->
+</html>
+<script>
+	function sum() {
+        let aInput = document.getElementById("a");
+        let bInput = document.getElementById("b");
+        let summ = document.getElementById("summ");
+        summ.innerHTML = Number(aInput.value) + Number(bInput.value);
+    }
+</script>
