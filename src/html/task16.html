@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Events</title>
+	<style>
+		.trail { /* className для элементов, летящих за курсором */
+			position: absolute;
+			height: 6px;
+			width: 6px;
+			border-radius: 3px;
+			background: red;
+		}
+#wrapper {
+	display: table;
+}
+		body {
+			height: 300px;
+		}
+		ul {
+			display: table-header-group;
+			/*position: absolute;*/
+			/*top: 0;*/
+			margin-left: -10px; /* Обнуляем значение отступов */
+			margin-top: 0px; /* Обнуляем значение отступов */
+			padding: 4px; /* Значение полей */
+		}
+		li {
+			list-style-type: none;
+			display: inline; /* Отображать как строчный элемент */
+			margin-right: 0px; /* Отступ слева */
+			padding: 0px; /* Поля вокруг текста */
+		}
+	</style>
+</head>
+<body>
+<h3>Events</h3>
+<label>Цензура (букв Q, W и X) <input id="censura" type="text"></label>
+<div id="wrapper">
+	<div data-tabname="one">Закладка один</div>
+	<div data-tabname="two">Закладка два</div>
+	<div data-tabname="three">Закладка три</div>
+</div>
+</body>
+</html>
+<script>
+    //-----------------------------------------------------1-----------------------------------------------------------------------------------
+    "use strict";
+    function toArray(elements) {
+        return Array.prototype.slice.call(elements, 0);
+    }
+    let censuredChars = ["q", "w", "x"];
+    document.getElementById("censura").addEventListener("keypress", function (event) {
+        event = event || window.event;
+        event.stopPropagation();
+        let key = String.fromCharCode(event.charCode).toLocaleLowerCase();
+        if (censuredChars.indexOf(key) != -1) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+    //-----------------------------------------------------2-----------------------------------------------------------------------------------
+    let trail = [];
+    addEventListener("mousemove", function (event) {
+        let tail;
+
+        if (trail.length < 50) {
+            tail = document.createElement("div");
+            document.body.appendChild(tail);
+            tail.className = "trail";
+        } else {
+            tail = trail.shift();
+        }
+
+        tail.style.top = event.clientY + "px";
+        tail.style.left = event.clientX + "px";
+        trail.push(tail);
+    });
+
+
+    //-----------------------------------------------------3-----------------------------------------------------------------------------------
+
+    function asTabs(node) {
+        let childNodes = toArray(node.childNodes);
+        let list = document.createElement("ul");
+        node.appendChild(list);
+        let tabs = childNodes.filter(function (n) {
+            return n.nodeType == 1;
+        });
+        tabs.forEach(function (n, i) {
+
+            let button = document.createElement("button");
+            button.innerHTML = n.getAttribute("data-tabname");
+            button.addEventListener("click", function () {
+                tabs.forEach(function (n) {
+                    n.style.display = "none";
+                });
+                n.style.display = "block";
+            });
+
+            let li = document.createElement("li");
+            li.appendChild(button);
+            list.appendChild(li);
+
+            if (i == 0) {
+                return undefined;
+            }
+            n.style.display = "none";
+        });
+        for (let i = 0; i < childNodes.length; i++) {
+            childNodes[i].style.display = "none";
+        }
+    }
+
+    asTabs(document.querySelector("#wrapper"));
+</script>

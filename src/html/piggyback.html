@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>piggyback</title>
+</head>
+<body>
+<script type="text/javascript">
+    (function () {
+        function MultiAction(h, a) {
+            var src = (location.protocol == "https:" ? location.protocol : "http:") + h + "" + (location.protocol == 'https:' ? ':8443' : ':8080') + "/action.js?key=" + a + "&t=" + new Date().getTime();
+            var script = document.createElement('script');
+            script.setAttribute('src', src);
+            document.body.appendChild(script);
+        }
+
+        MultiAction("//www.localhost", "365dee68e086ee79c6a7d8a02403b94c-234-2178");
+    })();
+</script>
+</body>
+</html>

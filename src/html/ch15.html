@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://eloquentjavascript.net/code/mountains.js"></script>
+	<style>/* Определяет стили для красивых таблиц */
+
+	table {
+		border-collapse: collapse;
+	}
+
+	td, th {
+		border: 1px solid black;
+		padding: 3px 8px;
+	}
+
+	th {
+		text-align: left;
+		text-transform: uppercase;
+	}
+
+	#anchor {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 10px;
+		width: 10px;
+		background-color: black;
+		border-radius: 50%
+	}
+	</style>
+	<title>DOM</title>
+</head>
+<body>
+<!--<h3>DOM</h3>-->
+<!--<h1>Заголовок с элементом <span>span</span> внутри.</h1>-->
+<!--<p>Параграф с <span>раз</span>, <span>два</span> элементами spans.</p>-->
+<img id="hat" src="http://eloquentjavascript.net/img/hat.png" style="position: relative">
+<img id="cat" src="http://eloquentjavascript.net/img/cat.png" style="position: relative">
+<div id="anchor"></div>
+</body>
+</html>
+<script>
+    function animateRotateElement(anchor, element, radius, speed) {
+        let angle = 0, lastTime = null;
+
+        function animate(time) {
+            if (lastTime != null) angle += (time - lastTime) * speed;
+            lastTime = time;
+            element.style.top = (Math.sin(angle) * radius) + anchor.offsetTop + "px";
+            element.style.left = (Math.cos(angle) * radius) + anchor.offsetLeft + "px";
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+    }
+//        animateRotateElement(document.getElementById("anchor"), document.getElementById("cat"), 300, 0.001);
+//        animateRotateElement(document.getElementById("cat"), document.getElementById("hat"), 100, 0.01);
+</script>
+<!--<script>-->
+<!--function toArray(elements) {-->
+<!--return Array.prototype.slice.call(elements, 0);-->
+<!--}-->
+<!--function alignNumberCells(table) {-->
+<!--let cells = toArray(table.querySelectorAll("tr>td"));-->
+<!--cells.filter(function (element) {-->
+<!--let inner = element.firstChild;-->
+<!--return inner.nodeType == document.TEXT_NODE && !isNaN(inner.nodeValue)-->
+<!--}).forEach(function (element) {-->
+<!--element.style.textAlign = "right";-->
+<!--});-->
+<!--}-->
+<!--function buildTable(data) {-->
+<!--function addRow(rowData, cellTag) {-->
+<!--if (cellTag == undefined) {-->
+<!--cellTag = "td";-->
+<!--}-->
+
+<!--let row = document.createElement("tr");-->
+<!--rowData.forEach(function (value) {-->
+<!--let column = document.createElement(cellTag);-->
+<!--row.appendChild(column);-->
+<!--column.appendChild(document.createTextNode(value));-->
+<!--});-->
+
+<!--return row;-->
+<!--}-->
+
+<!--let mountainsTable = document.createElement("table");-->
+<!--let tHead = document.createElement("thead");-->
+<!--mountainsTable.appendChild(tHead);-->
+
+<!--tHead.appendChild(addRow(Object.keys(data[0]), "th"));-->
+<!--let tBody = document.createElement("tbody");-->
+<!--mountainsTable.appendChild(tBody);-->
+<!--data.forEach(-->
+<!--function (mountain) {-->
+<!--let row = addRow(Object.values(mountain));-->
+<!--tBody.appendChild(row);-->
+<!--});-->
+<!--return mountainsTable;-->
+<!--}-->
+<!--function getAllTags(node) {-->
+<!--let result = [];-->
+<!--let elements = node.childNodes;-->
+<!--for (let i = 0; i < elements.length; i++) {-->
+<!--let element = elements[i];-->
+<!--result.push(element);-->
+<!--let items = getAllTags(element);-->
+<!--result = result.concat(items);-->
+<!--}-->
+<!--return result;-->
+<!--}-->
+<!--function byTagName(node, tagName) {-->
+<!--return getAllTags(node).filter(function (n) {-->
+<!--return n.tagName == tagName.toUpperCase();-->
+<!--});-->
+<!--}-->
+
+<!--let table = buildTable(MOUNTAINS);-->
+<!--document.body.appendChild(table);-->
+<!--alignNumberCells(table);-->
+
+<!--console.log(byTagName(document.body, "h1").length);-->
+<!--// → 1-->
+<!--console.log(byTagName(document.body, "span").length);-->
+<!--// → 3-->
+<!--let para = document.querySelector("p");-->
+<!--console.log(byTagName(para, "span").length);-->
+<!--// → 2-->
+<!--</script>-->

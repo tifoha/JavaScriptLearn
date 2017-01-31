@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Events</title>
+	<style>
+		body {
+			height: 2000px;
+			background: beige;
+		}
+
+		.dot {
+			height: 8px;
+			width: 8px;
+			border-radius: 4px; /* скруглённые углы */
+			background: blue;
+			position: absolute;
+		}
+
+		#progress {
+			right: 0;
+			position: fixed;
+			border: 1px solid black;
+			width: 50%;
+		}
+
+		#progress div {
+			width: 0;
+			background: orange;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+<!--<body oncontextmenu="return false;">-->
+<div id="progress">
+	<div></div>
+</div>
+<h3 id="title">Events</h3>
+<p>Наведите мышь на этот <strong>параграф </strong>.</p>
+<!--<button onkeydown="return false;">B1</button>-->
+<!--<button>B2</button>-->
+<!--<button>B3</button>-->
+<!--<button>B4</button>-->
+<label>Имя: <input type="text" data-help="Ваше полное имя"></label>
+<label>Возраст: <input type="text" data-help="Возраст в годах"></label>
+<p id="help"></p>
+<textarea id="text" cols="50" rows="10" placeholder="Введите что-нибудь..."></textarea>
+<script>
+    var CSS_COLOR_NAMES = ["AliceBlue", "AntiqueWhite", "Aqua", "Aquamarine", "Azure", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue", "BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Cornsilk", "Crimson", "Cyan", "DarkBlue", "DarkCyan", "DarkGoldenRod", "DarkGray", "DarkGrey", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "Darkorange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen", "DarkSlateBlue", "DarkSlateGray", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DimGray", "DimGrey", "DodgerBlue", "FireBrick", "FloralWhite", "ForestGreen", "Fuchsia", "Gainsboro", "GhostWhite", "Gold", "GoldenRod", "Gray", "Grey", "Green", "GreenYellow", "HoneyDew", "HotPink", "IndianRed", "Indigo", "Ivory", "Khaki", "Lavender", "LavenderBlush", "LawnGreen", "LemonChiffon", "LightBlue", "LightCoral", "LightCyan", "LightGoldenRodYellow", "LightGray", "LightGrey", "LightGreen", "LightPink", "LightSalmon", "LightSeaGreen", "LightSkyBlue", "LightSlateGray", "LightSlateGrey", "LightSteelBlue", "LightYellow", "Lime", "LimeGreen", "Linen", "Magenta", "Maroon", "MediumAquaMarine", "MediumBlue", "MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue", "MediumSpringGreen", "MediumTurquoise", "MediumVioletRed", "MidnightBlue", "MintCream", "MistyRose", "Moccasin", "NavajoWhite", "Navy", "OldLace", "Olive", "OliveDrab", "Orange", "OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed", "PapayaWhip", "PeachPuff", "Peru", "Pink", "Plum", "PowderBlue", "Purple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon", "SandyBrown", "SeaGreen", "SeaShell", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGray", "SlateGrey", "Snow", "SpringGreen", "SteelBlue", "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet", "Wheat", "White", "WhiteSmoke", "Yellow", "YellowGreen"];
+    var currentCollorIndex = 0;
+
+    document.addEventListener("click", function (event) {
+//        console.log("Ckick " + event.target.tagName);
+        let dot = document.createElement("div");
+        dot.className = "dot";
+        dot.style.left = (event.pageX - 4) + "px";
+        dot.style.top = (event.pageY - 4) + "px";
+        document.body.appendChild(dot);
+    });
+    //    document.getElementsByTagName("button").addEventListener("click", function (event) {
+    //        console.log("Ckick " + event.currentTarget.innerHtml);
+    //    })
+    let buttons = document.getElementsByTagName("button");
+    function once(event) {
+//        event.preventDefault();
+        console.log("whitch", event.which, "button", event.button);
+        event.target.removeEventListener("click", once);
+    }
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", once);
+        buttons[i].addEventListener("onContextMenu", function (event) {
+            event.stopPropagation();
+            return false;
+        });
+
+        document.body.addEventListener("keydown", function (event) {
+            event.stopPropagation();
+            if (event.keyCode == 38)
+                document.body.style.background = CSS_COLOR_NAMES[currentCollorIndex++ % CSS_COLOR_NAMES.length];
+            else if (event.keyCode == 40)
+                document.body.style.background = CSS_COLOR_NAMES[currentCollorIndex-- % CSS_COLOR_NAMES.length];
+        });
+    }
+    function isInside(target, current) {
+        let node = current;
+        do {
+            if (target == node) {
+                return true;
+            }
+        } while ((node = node.parentNode) != undefined);
+
+        return false;
+    }
+    let p = document.querySelector("p");
+    let h3 = document.querySelector("h3");
+    console.log(isInside(p, p.firstElementChild));
+    console.log(isInside(p, h3));
+    p.addEventListener("mouseover", function (event) {
+        if (isInside(p, event.target)) {
+            p.style.color = "red";
+        }
+    });
+    p.addEventListener("mouseout", function (event) {
+        p.style.color = "black";
+    });
+
+    document.addEventListener("scroll", function (event) {
+        let max = document.body.scrollHeight - innerHeight;
+        let percent = (pageYOffset / max) * 100;
+        document.querySelector("#progress div").style.width = percent + "%";
+    });
+
+    function select(selector) {
+        return {
+            elements: document.querySelectorAll(selector),
+            addEvent: function (eventName, handler) {
+                for (let i = 0; i < this.elements.length; i++) {
+                    this.elements[i].addEventListener(eventName, handler);
+
+                }
+            }
+        };
+    }
+
+    let inputs = select("input");
+
+    inputs.addEvent("focus", function (event) {
+        let hint = event.target.getAttribute("data-help");
+        document.getElementById("help").innerHTML = hint;
+    });
+
+    inputs.addEvent("blur", function (event) {
+        document.getElementById("help").innerHTML = "";
+    });
+
+    setTimeout(function () {
+        document.body.style.background = "pink";
+        setTimeout(function () {
+            document.body.style.background = "white";
+
+        }, 2000);
+    }, 2000);
+    let f;
+
+    document.addEventListener("keypress", function () {
+        clearTimeout(f);
+        f = setTimeout(function () {
+                alert("Typing end.")
+            }, 1000);
+    });
+</script>
+</body>
+</html>

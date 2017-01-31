@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX</title>
+</head>
+<body>
+<h3>AJAX</h3>
+<script>
+    //    {
+    //        let request = new XMLHttpRequest();
+    //        request.open("GET", "ajax.txt", false);
+    //        request.send(null);
+    //        let s = request.responseText;
+    //        console.log(s);
+    //    }
+    //    //async
+    //
+    //    {
+    //        let request = new XMLHttpRequest();
+    //        request.open("GET", "ajax.txt", true);
+    //        request.addEventListener("load", function () {
+    //            let s = request.responseText;
+    //            console.log(s);
+    //        });
+    //        request.send(null);
+    //    }
+    //
+    //    //XML
+    //    {
+    //        let request = new XMLHttpRequest();
+    //        request.open("GET", "xml.xml", false);
+    //        request.send(null);
+    //        console.log(request.responseXML.querySelectorAll("fruit").length);
+    //    }
+    //
+    //    //JSON
+    //    {
+    //        let request = new XMLHttpRequest();
+    //        request.open("GET", "xml.json", false);
+    //        request.send(null);
+    //        console.log(request.getAllResponseHeaders());
+    //        console.log(JSON.parse(request.responseText));
+    //    }
+
+    //Promises
+
+    //    get("xml.json")
+    //        .then((content) => {
+    //            alert(content);
+    //        })
+    //        .catch((error) => {
+    //            alert(error);
+    //        });
+    function getJSON(url) {
+        return get(url).then(JSON.parse);
+    }
+    function get(url) {
+        return new Promise((success, fail) => {
+            let request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.send(null);
+            request.addEventListener("load", () => {
+                if (request.status < 400) {
+                    success(request.responseText);
+                } else {
+                    fail(new Error(request.status + ":" + url));
+                }
+            });
+            request.addEventListener("error", () => fail(new Error("Request fail " + url)));
+        });
+    }
+
+    getJSON("example/bert.json").then((bert) =>
+        getJSON(bert.spouse)
+    ).then((suzie) =>
+        getJSON(suzie.mother)
+    ).then((muriel) => {
+            console.log(muriel.name, this)
+        }
+    ).catch(alert);
+
+    //    var loading = showMessage("Загрузка...");
+    //    getJSON("example/bert.json").then(function (bert) {
+    //        return getJSON(bert.spouse);
+    //    }).then(function (spouse) {
+    //        return getJSON(spouse.mother);
+    //    }).then(function (mother) {
+    //        showMessage("Имя - " + mother.name);
+    //    }).catch(function (error) {
+    //        showMessage(String(error));
+    //    }).then(function () {
+    //        document.body.removeChild(loading);
+
+    //    new Promise((success, fail) => {
+    //        success(1);
+    //    }).then((result) => {
+    //        return ++result
+    //    }).then((result) => {
+    //        return ++result
+    //    }).then((result) => {
+    //        return ++result
+    //    }).then(alert).catch(() => alert("Error"));
+
+</script>
+<script type="text/javascript">
+    document.write(unescape("%3Cscript id=%27pap_x2s6df8d%27 src=%27" + (("https:" == document.location.protocol) ? "https://" : "http://") + "aff.adland.co.il/scripts/trackjs.js%27 type=%27text/javascript%27%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    PostAffTracker.setAccountId('default1');
+    var sale = PostAffTracker.createSale();
+    sale.setTotalCost('1');
+    sale.setOrderID('909090');
+    sale.setProductID('test test');
+    sale.setCampaignID('677f2ead');
+
+    PostAffTracker.register();
+</script>
+</body>
+</html>

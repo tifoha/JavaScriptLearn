@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FORMS</title>
+	<style>
+		.error {
+			color: red;
+			font-weight: 300;
+		}
+
+		.succes {
+			color: black;
+		}
+	</style>
+</head>
+<body>
+<h3>FORMS</h3>
+<label for="code">Java Script</label>
+<textarea id="code">return "hi";</textarea>
+<button id="button">Поехали</button>
+<pre id="output"></pre>
+<label for="field">Vars: </label>
+<input type="text" id="field">
+<div id="suggestions" style="cursor: pointer">
+	<div></div>
+</div>
+<script>
+    // Строит массив из имён глобальных перменных,
+    // типа  'alert', 'document', и 'scrollTo'
+    let terms = [];
+    for (let name in window)
+        terms.push(name);
+    // Ваш код.
+</script>
+<script>
+    let outputElement = document.getElementById("output");
+    document.getElementById("button").addEventListener("click", execute);
+    function execute() {
+        let code = document.getElementById("code").value;
+
+        try {
+            let result = new Function("", code)();
+            outputElement.innerHTML = result;
+            outputElement.className = "succes";
+        } catch (err) {
+            outputElement.className = "error";
+            outputElement.innerHTML = err.message;
+        }
+    }
+</script>
+</body>
+</html>
