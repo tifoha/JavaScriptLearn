@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+        <!--
+        function fillin(formObj) {
+            var mytext = formObj.elements['mytext'].value;
+            sellength = formObj.elements['wholetext'].length;
+
+            for(var i=0; i<sellength; i++) {
+                if (formObj.elements['wholetext'].options[i].text.toLowerCase().indexOf(mytext.toLowerCase(),0) == 0) {
+                    formObj.elements['wholetext'].options[i].selected = true;
+                    break;
+                }
+            }
+        }
+
+        function filltext(selObj) {
+            document.forms['myForm'].elements['mytext'].value = selObj.options[selObj.selectedIndex].text;
+        }
+        //-->
+	</script>
+</head>
+
+<body>
+<form name="myForm">
+	<input type="text" name="mytext" onkeyup="fillin(this.form);"><br />
+	<select name="wholetext" onchange="filltext(this);">
+		<option>Red</option>
+		<option>Red Flowers</option>
+		<option>Green</option>
+		<option>Grass</option>
+	</select>
+
+	<label for="state">State:</label>
+	<input type="text" name="state" id="state" list="state_list">
+	<datalist id="state_list">
+		<option value="AL">Алабама</option>
+		<option value="AK">Аляска</option>
+		<option value="AZ">Аризона</option>
+		<option value="AR">Арканзас</option>
+		<!-- и т.д. -->
+	</datalist>
+	<input type="text" list="pets" autocomplete="off">
+	<datalist id="pets">
+		<option>Кот</option>
+		<option>Собака</option>
+		<option>Хомяк</option>
+		<option>Черепаха</option>
+	</datalist>
+	<label for="donation">Размер пожертвования (USD):</label>
+	<input type="range" name="donation" id="donation" list="donation_list"
+		   step="5" min="5" max="200">
+	<datalist id="donation_list">
+		<option>25</option>
+		<option>50</option>
+		<option>100</option>
+		<option>200</option>
+	</datalist>
+</form>
+</body>
+</html>
